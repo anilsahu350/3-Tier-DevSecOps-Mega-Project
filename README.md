@@ -1,31 +1,48 @@
-# 3-Tier DevSecOps Project
+# 🚀 3-Tier DevSecOps Mega Project
 
-This repository contains a simple Node.js API and a React client used for a user management demo. Follow the steps below to get the project running locally.
+A complete DevSecOps pipeline for a Node.js-based 3-tier web app (React frontend, Express backend, MySQL DB), built with Docker, Jenkins, Trivy, GitLeaks, and SonarQube.
 
-## Setup
+---
 
-1. Install Node.js (version 18 or later is recommended).
-2. Install dependencies for both the API and client:
+## 🧰 Tech Stack
 
-   ```bash
-   cd api && npm install
-   cd ../client && npm install
-   ```
+- **Frontend**: React + Nginx
+- **Backend**: Node.js (Express)
+- **Database**: MySQL
+- **CI/CD**: Jenkins + Docker Compose
+- **Security**: GitLeaks, Trivy
+- **Code Quality**: SonarQube
 
-3. Start the API server:
+---
 
-   ```bash
-   cd api
-   npm start
-   ```
+## 🔧 Prerequisites
 
-4. In a separate terminal, start the React client:
+Install on Jenkins host:
 
-   ```bash
-   cd client
-   npm start
-   ```
+- Docker + Docker Compose
+- Node.js (Jenkins tool name: `nodejs23`)
+- SonarScanner (`sonar-scanner`)
+- GitLeaks, Trivy
+- SonarQube (Jenkins name: `sonar`)
+- Docker Hub credentials in Jenkins as `docker-cred`
 
-5. Open `http://localhost:3000` in your browser to use the application.
+---
 
-The client now displays an animated banner welcoming you to **DevOps Shack**.
+## 🛠️ Jenkins Pipeline Stages
+
+1. **Checkout** from GitHub branch `docker-build-deploy`
+2. **JS Compilation** checks (client + backend)
+3. **Secret Scanning** via GitLeaks
+4. **Code Quality** with SonarQube
+5. **Trivy Security Scan** (FS & Docker Images)
+6. **Docker Build + Push** to Docker Hub
+7. **Deploy** with Docker Compose
+
+---
+
+## 🐳 Docker Compose
+
+Run locally:
+
+```bash
+docker-compose up -d
